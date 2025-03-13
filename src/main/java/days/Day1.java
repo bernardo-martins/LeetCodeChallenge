@@ -13,6 +13,7 @@ public class Day1 {
             else if (num > 0)
                 pn++;
         return Math.max(pn,nn);
+
     }
 
     public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
