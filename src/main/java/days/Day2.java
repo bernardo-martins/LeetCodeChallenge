@@ -9,4 +9,5 @@ public class Day2 {
                     return true;
         return false;
     }
+    
 }
