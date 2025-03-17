@@ -1,34 +1,36 @@
+import utils.ListNode;
+
 import java.util.Stack;
 
 public class Main {
 
-    public static int[] plusOne(int[] digits) {
-        boolean isShift = true;
-        for (int digit : digits) {
-            if (digit != 9) {
-                isShift = false;
-                break;
+    public static ListNode deleteDuplicates(ListNode head) {
+        if(head == null)
+            return null;
+        ListNode node = head;
+        ListNode next = node.next;
+        ListNode origin = node;
+        while(next != null) {
+            if(node.val != next.val) {
+                node.next = next;
+                node = node.next;
+                next = node.next;
+                continue;
             }
+            next = next.next;
         }
-
-        if(isShift) {
-
-            int[] newDigits = new int[digits.length+1];
-            newDigits[1] = digits[0];
-            digits = newDigits;
-
-            digits[digits.length-2] += 1;
-            digits[digits.length-1] = 0;
-        } else {
-            digits[digits.length-1] += 1;
-        }
-        return digits;
+        node.next = null;
+        return origin;
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[] {9,9};
-        int target = 0;
-        for(int i : plusOne(nums))
-            System.out.print(i);
+        ListNode node = new ListNode(1, new ListNode(1, new ListNode(2,
+                new ListNode(3, new ListNode(3, null)))));
+        ListNode nonRepeated = deleteDuplicates(node);
+        ListNode n = nonRepeated;
+        while(n!=null) {
+            System.out.println(n.val);
+            n = n.next;
+        }
     }
 }
