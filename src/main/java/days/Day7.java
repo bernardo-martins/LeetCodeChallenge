@@ -1,12 +1,11 @@
-import utils.ListNode;
+package days;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
-public class Main {
+public class Day7 {
 
-    public static List<List<Integer>> generate(int numRows) {
+    public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> pascal = new ArrayList<List<Integer>>(numRows);
         List<Integer> list = new ArrayList<Integer>();
 
@@ -24,14 +23,4 @@ public class Main {
         return pascal;
     }
 
-
-    public static void main(String[] args) {
-        List<List<Integer>> list = generate(5);
-        for(List<Integer> l: list) {
-            for(Integer i : l) {
-                System.out.print(" "+i);
-            }
-            System.out.println();
-        }
-    }
 }
