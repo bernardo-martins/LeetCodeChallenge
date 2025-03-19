@@ -1,4 +1,5 @@
 import utils.ListNode;
+import utils.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,32 +7,45 @@ import java.util.Stack;
 
 public class Main {
 
-    public static List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> pascal = new ArrayList<List<Integer>>(numRows);
-        List<Integer> list = new ArrayList<Integer>();
+    public static boolean hasPathSum(TreeNode root, int targetSum) {
+        if (root == null)
+            return false;
 
-        for(int i = 0; i < numRows; i++) {
-            list = new ArrayList<Integer>();
-            for(int j = 0; j < i + 1; j++) {
-                if(j == 0 || j == i)
-                    list.add(j,1);
-                else
-                    list.add(j, pascal.get(i-1).get(j) + pascal.get(i-1).get(j-1));
+        Stack<TreeNode> stack = new Stack<>();
+        Stack<Integer> sums = new Stack<>();
+        stack.push(root);
+        sums.push(root.val);
+
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            int sum = sums.pop();
+
+            if (node.left == null && node.right == null && sum == targetSum) {
+                return true;
             }
-            pascal.add(list);
-        }
 
-        return pascal;
+            if (node.right != null) {
+                stack.push(node.right);
+                sums.push(sum + node.right.val);
+            }
+            if (node.left != null) {
+                stack.push(node.left);
+                sums.push(sum + node.left.val);
+            }
+        }
+        return false;
     }
 
-
     public static void main(String[] args) {
-        List<List<Integer>> list = generate(5);
-        for(List<Integer> l: list) {
-            for(Integer i : l) {
-                System.out.print(" "+i);
-            }
-            System.out.println();
-        }
+        TreeNode two = new TreeNode(2,null,null);
+        TreeNode seven = new TreeNode(7, null, null);
+        TreeNode eleven = new TreeNode(11, seven, two);
+        TreeNode four = new TreeNode(4, eleven, null);
+        TreeNode eight = new TreeNode(8, new TreeNode(13,null,null), null);
+        TreeNode node =
+                new TreeNode(5, four, eight);
+
+        boolean result = hasPathSum(node, 22);
+
     }
 }
