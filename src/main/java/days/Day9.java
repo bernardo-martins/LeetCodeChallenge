@@ -19,4 +19,8 @@ public class Day9 {
             stairs[i] = stairs[i-1] + stairs[i-2];
         return stairs[x-1];
     }
+
+    public int mySqrt(int x) {
+        return Integer.valueOf((int) Math.sqrt((double)x));
+    }
 }
