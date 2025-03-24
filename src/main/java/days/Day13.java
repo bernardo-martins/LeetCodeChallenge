@@ -30,7 +30,6 @@ public class Day13 {
 
             prevValue = currentValue;
         }
-
         return result;
     }
 
